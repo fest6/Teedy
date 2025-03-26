@@ -501,13 +501,13 @@
 
     </dependencies>
   </dependencyManagement>
-  <url>https://github.com/justinhrobbins/multi-module-site-report-test</url>
-  <distributionManagement>
-    <site>
-      <id>docs-site</id>
-      <url>file:./docs/</url>
-      <name>Docs Project Site</name>
-    </site>
-  </distributionManagement>
+    <url>https://github.com/justinhrobbins/multi-module-site-report-test</url>
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <name>site</name>
+            <url>scp://www.yourcompany.com/www/docs/project/</url>
+        </site>
+    </distributionManagement>
 
 </project>
