@@ -500,7 +500,7 @@
   <distributionManagement>
     <site>
       <id>docs-site</id>
-      <url>http://localhost:8080/docs/</url>
+      <url>file:./docs/</url>
       <name>Docs Project Site</name>
     </site>
   </distributionManagement>
