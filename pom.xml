@@ -512,40 +512,24 @@
 
   <reporting>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.26.0</version>
-        <configuration>
-          <linkXref>true</linkXref>
-          <inputEncoding>utf-8</inputEncoding>
-          <minimumTokens>100</minimumTokens>
-          <targetJdk>1.5</targetJdk>
-          <excludes>
-            <exclude>**/*Bean.java</exclude>
-            <exclude>**/generated/*.java</exclude>
-          </excludes>
-          <excludeRoots>
-            <excludeRoot>target/generated-sources/stubs</excludeRoot>
-          </excludeRoots>
-        </configuration>
-        <reportSets>
-          <reportSet><!-- by default, id = "default" -->
-            <reports><!-- select non-aggregate reports -->
-              <report>pmd</report>
-              <report>cpd</report>
-            </reports>
-          </reportSet>
-          <reportSet><!-- aggregate reportSet, to define in poms having modules -->
-            <id>aggregate</id>
-            <inherited>false</inherited> <!-- don't run aggregate in child modules -->
-            <reports>
-              <report>aggregate-pmd</report>
-              <report>aggregate-cpd</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
+        <!-- PMD 报告插件 -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>3.21.0</version>
+            <configuration>
+                <!-- 指定自定义规则集 -->
+                <rulesets>
+                    <ruleset>${project.basedir}/rules.xml</ruleset>
+                </rulesets>
+                <!-- 可选配置 -->
+                <linkXRef>true</linkXRef> <!-- 链接到源代码 -->
+                <sourceEncoding>UTF-8</sourceEncoding>
+                <targetJdk>11</targetJdk> <!-- 与项目 JDK 一致 -->
+                <format>html</format> <!-- 报告格式，可以是 xml, csv 等 -->
+                <outputDirectory>${project.reporting.outputDirectory}/pmd</outputDirectory>
+            </configuration>
+        </plugin>
     </plugins>
   </reporting>
 
