@@ -517,9 +517,14 @@
       <artifactId>maven-pmd-plugin</artifactId>
       <version>3.26.0</version>
       <configuration>
+        <!-- 使用 PMD 的 metrics 规则集 -->
+        <rulesets>
+          <ruleset>rulesets/metrics.xml</ruleset>
+        </rulesets>
         <linkXref>true</linkXref>
         <inputEncoding>utf-8</inputEncoding>
-        <!-- 此处保留其它通用配置 -->
+        <targetJdk>1.5</targetJdk>
+        <!-- 如果需要排除部分文件或目录，可参考如下配置 -->
         <excludes>
           <exclude>**/*Bean.java</exclude>
           <exclude>**/generated/*.java</exclude>
@@ -530,30 +535,23 @@
       </configuration>
       <reportSets>
         <reportSet>
+          <!-- 默认报告 -->
           <reports>
-            <!-- 仅报告指定的指标 -->
-            <report>loc</report>
-            <report>cc</report>
-            <report>wmc</report>
-            <report>cbo</report>
-            <report>lcom</report>
+            <report>pmd</report>
           </reports>
         </reportSet>
-        <!-- 如果存在多模块聚合配置，可按需求定义 aggregate reportSet -->
         <reportSet>
+          <!-- 如果是聚合报告，可使用如下设置 -->
           <id>aggregate</id>
           <inherited>false</inherited>
           <reports>
-            <report>aggregate-loc</report>
-            <report>aggregate-cc</report>
-            <report>aggregate-wmc</report>
-            <report>aggregate-cbo</report>
-            <report>aggregate-lcom</report>
+            <report>aggregate-pmd</report>
           </reports>
         </reportSet>
       </reportSets>
     </plugin>
   </plugins>
 </reporting>
+
 
 </project>
