@@ -116,6 +116,17 @@
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${org.eclipse.jetty.jetty-maven-plugin.version}</version>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.9.0</version>
+        <configuration>
+            <locales>en_US</locales>
+            <outputDirectory>${project.build.directory}/site</outputDirectory>
+            <relativizeDecorationLinks>false</relativizeDecorationLinks>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
