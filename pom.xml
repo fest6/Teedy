@@ -510,43 +510,50 @@
     </site>
   </distributionManagement>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.26.0</version>
-        <configuration>
-          <linkXref>true</linkXref>
-          <inputEncoding>utf-8</inputEncoding>
-          <minimumTokens>100</minimumTokens>
-          <targetJdk>1.5</targetJdk>
-          <excludes>
-            <exclude>**/*Bean.java</exclude>
-            <exclude>**/generated/*.java</exclude>
-          </excludes>
-          <excludeRoots>
-            <excludeRoot>target/generated-sources/stubs</excludeRoot>
-          </excludeRoots>
-        </configuration>
-        <reportSets>
-          <reportSet><!-- by default, id = "default" -->
-            <reports><!-- select non-aggregate reports -->
-              <report>pmd</report>
-              <report>cpd</report>
-            </reports>
-          </reportSet>
-          <reportSet><!-- aggregate reportSet, to define in poms having modules -->
-            <id>aggregate</id>
-            <inherited>false</inherited> <!-- don't run aggregate in child modules -->
-            <reports>
-              <report>aggregate-pmd</report>
-              <report>aggregate-cpd</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
+<reporting>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-pmd-plugin</artifactId>
+      <version>3.26.0</version>
+      <configuration>
+        <linkXref>true</linkXref>
+        <inputEncoding>utf-8</inputEncoding>
+        <!-- 此处保留其它通用配置 -->
+        <excludes>
+          <exclude>**/*Bean.java</exclude>
+          <exclude>**/generated/*.java</exclude>
+        </excludes>
+        <excludeRoots>
+          <excludeRoot>target/generated-sources/stubs</excludeRoot>
+        </excludeRoots>
+      </configuration>
+      <reportSets>
+        <reportSet>
+          <reports>
+            <!-- 仅报告指定的指标 -->
+            <report>loc</report>
+            <report>cc</report>
+            <report>wmc</report>
+            <report>cbo</report>
+            <report>lcom</report>
+          </reports>
+        </reportSet>
+        <!-- 如果存在多模块聚合配置，可按需求定义 aggregate reportSet -->
+        <reportSet>
+          <id>aggregate</id>
+          <inherited>false</inherited>
+          <reports>
+            <report>aggregate-loc</report>
+            <report>aggregate-cc</report>
+            <report>aggregate-wmc</report>
+            <report>aggregate-cbo</report>
+            <report>aggregate-lcom</report>
+          </reports>
+        </reportSet>
+      </reportSets>
+    </plugin>
+  </plugins>
+</reporting>
 
 </project>
