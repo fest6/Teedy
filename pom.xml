@@ -515,48 +515,43 @@
     </site>
   </distributionManagement>
 
-<reporting>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-pmd-plugin</artifactId>
-      <version>3.26.0</version>
-      <configuration>
-        <!-- 使用 PMD 的 metrics 规则集 -->
-        <rulesets>
-          <ruleset>rulesets/metrics.xml</ruleset>
-        </rulesets>
-        <linkXref>true</linkXref>
-        <inputEncoding>utf-8</inputEncoding>
-        <targetJdk>1.5</targetJdk>
-        <!-- 如果需要排除部分文件或目录，可参考如下配置 -->
-        <excludes>
-          <exclude>**/*Bean.java</exclude>
-          <exclude>**/generated/*.java</exclude>
-        </excludes>
-        <excludeRoots>
-          <excludeRoot>target/generated-sources/stubs</excludeRoot>
-        </excludeRoots>
-      </configuration>
-      <reportSets>
-        <reportSet>
-          <!-- 默认报告 -->
-          <reports>
-            <report>pmd</report>
-          </reports>
-        </reportSet>
-        <reportSet>
-          <!-- 如果是聚合报告，可使用如下设置 -->
-          <id>aggregate</id>
-          <inherited>false</inherited>
-          <reports>
-            <report>aggregate-pmd</report>
-          </reports>
-        </reportSet>
-      </reportSets>
-    </plugin>
-  </plugins>
-</reporting>
-
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.26.0</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <inputEncoding>utf-8</inputEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>1.5</targetJdk>
+          <excludes>
+            <exclude>**/*Bean.java</exclude>
+            <exclude>**/generated/*.java</exclude>
+          </excludes>
+          <excludeRoots>
+            <excludeRoot>target/generated-sources/stubs</excludeRoot>
+          </excludeRoots>
+        </configuration>
+        <reportSets>
+          <reportSet><!-- by default, id = "default" -->
+            <reports><!-- select non-aggregate reports -->
+              <report>pmd</report>
+              <report>cpd</report>
+            </reports>
+          </reportSet>
+          <reportSet><!-- aggregate reportSet, to define in poms having modules -->
+            <id>aggregate</id>
+            <inherited>false</inherited> <!-- don't run aggregate in child modules -->
+            <reports>
+              <report>aggregate-pmd</report>
+              <report>aggregate-cpd</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
