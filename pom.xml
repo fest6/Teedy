@@ -501,4 +501,11 @@
     </dependencies>
   </dependencyManagement>
 
+  <distributionManagement>
+    <site>
+      <id>local-site</id>
+      <url>file://${project.build.directory}/docs-web-common/target/site</url>
+    </site>
+  </distributionManagement>
+
 </project>
