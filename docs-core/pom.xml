@@ -239,7 +239,7 @@
   <distributionManagement>
     <site>
       <id>local-site</id>
-      <url>file://${project.basedir}/site/</url>
+      <url>file://${project.build.directory}/site/</url>
     </site>
   </distributionManagement>
 
