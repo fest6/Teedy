@@ -129,7 +129,7 @@
         <version>3.26.0</version>
         <configuration>
           <rulesets>
-            <ruleset>rules.xml</ruleset>
+            <ruleset>${project.basedir}/rules.xml</ruleset>
           </rulesets>
         </configuration>
       </plugin>
