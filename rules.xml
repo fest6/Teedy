@@ -1,88 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Custom Metrics Ruleset"
-         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
-         http://pmd.sourceforge.net/ruleset_2_0_0.xsd"
-         xmlns:fn="http://www.w3.org/2005/xpath-functions">
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Android Application Rules"
+    xmlns="http://pmd.sf.net/ruleset/1.0.0"
+    xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd"
+    xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd">
 
-    <description>
-        自定义 PMD 规则集：用于报告以下代码指标：
-        - Lines of Code (LoC)
-        - Cyclomatic Complexity (CC)
-        - Weighted Methods per Class (WMC)
-        - Coupling Between Objects (CBO)
-        - Lack of Cohesion in Methods (LCOM)
+    <description>Custom ruleset for ribot Android application</description>
 
-        注意：部分指标（如 CBO、LCOM）并非 PMD 原生支持，可使用 PMD 扩展或自行实现规则。
-    </description>
-    
-    <!-- 示例：针对方法的圈复杂度（Cyclomatic Complexity） -->
-    <rule name="ExcessiveCyclomaticComplexity"
-          language="java"
-          message="方法的 Cyclomatic Complexity 超过阈值。"
-          class="net.sourceforge.pmd.lang.java.rule.metrics.CyclomaticComplexityRule">
-        <description>
-            检查方法的 Cyclomatic Complexity，当超过设定的阈值（例如 10）时报告问题。
-        </description>
-        <!-- 设置复杂度阈值为10 -->
-        <properties>
-            <property name="minimum" value="11"/>
-        </properties>
+    <exclude-pattern>.*/R.java</exclude-pattern>
+    <exclude-pattern>.*/gen/.*</exclude-pattern>
+
+    <rule ref="rulesets/java/android.xml" />
+    <rule ref="rulesets/java/clone.xml" />
+    <rule ref="rulesets/java/finalizers.xml" />
+    <rule ref="rulesets/java/imports.xml">
+        <!-- Espresso is designed this way !-->
+        <exclude name="TooManyStaticImports" />
     </rule>
-    
-    <!-- 示例：针对方法行数（作为 LoC 参考指标） -->
-    <rule name="ExcessiveMethodLength"
-          language="java"
-          message="方法的行数超过阈值。"
-          class="net.sourceforge.pmd.lang.java.rule.codestyle.LongMethodRule">
-        <description>
-            检查方法的源码行数，当超过设定阈值（例如 100 行）时报告问题。
-        </description>
-        <properties>
-            <property name="minimum" value="101"/>
-        </properties>
+    <rule ref="rulesets/java/logging-java.xml">
+        <!-- This rule wasn't working properly and given errors in every var call info -->
+        <exclude name="GuardLogStatementJavaUtil" />
     </rule>
-    
-    <!-- 示例：针对类内部方法复杂度加权（WMC） -->
-    <rule name="ExcessiveWeightedMethodsPerClass"
-          language="java"
-          message="类的加权方法数 (WMC) 超过阈值。"
-          class="net.sourceforge.pmd.lang.java.rule.metrics.WeightedMethodCountRule">
-        <description>
-            检查类中所有方法的复杂度和（WMC），当超过设定阈值（例如 50）时报告问题。
-        </description>
-        <properties>
-            <property name="minimum" value="51"/>
-        </properties>
+    <rule ref="rulesets/java/braces.xml">
+        <!-- We allow single line if's without braces -->
+        <exclude name="IfStmtsMustUseBraces" />
     </rule>
-    
-    <!-- 示例：针对耦合度（CBO）的规则 -->
-    <!-- 注意：目前 PMD 默认未提供直接计算 CBO 的规则，此处仅为示例。可以通过编写自定义规则实现 -->
-    <rule name="HighCouplingBetweenObjects"
-          language="java"
-          message="类之间的耦合度（CBO）过高。"
-          class="net.sourceforge.pmd.lang.java.rule.design.UnnecessarilyCoupledRule">
-        <description>
-            检查类的耦合度，如果发现类引入过多其他类的依赖即视为 CBO 过高。需要进一步定制以精确测量。
-        </description>
-        <properties>
-            <property name="threshold" value="10"/>
-        </properties>
+    <rule ref="rulesets/java/strings.xml" >
+        <!-- Exclude because causes problems with SQL Strings that usually require duplication -->
+        <exclude name="AvoidDuplicateLiterals"/>
     </rule>
-    
-    <!-- 示例：针对低内聚性（LCOM）的规则 -->
-    <!-- 注意：PMD 原生并未直接计算 LCOM，通常需要集成其他工具或编写自定义 XPath 规则实现 -->
-    <rule name="LowLackOfCohesionInMethods"
-          language="java"
-          message="类的内聚性较低（LCOM指标异常）。"
-          class="net.sourceforge.pmd.lang.java.rule.design.LowCohesionRule">
-        <description>
-            检查类中方法之间的内聚性，LCOM 过高时报告问题。该规则需要自定义实现或借助扩展库支持。
-        </description>
-        <properties>
-            <property name="threshold" value="5"/>
-        </properties>
+    <rule ref="rulesets/java/basic.xml" />
+    <rule ref="rulesets/java/naming.xml">
+        <exclude name="AbstractNaming" />
+        <exclude name="LongVariable" />
+        <exclude name="ShortMethodName" />
+        <exclude name="ShortVariable" />
+        <exclude name="ShortClassName" />
+        <exclude name="VariableNamingConventions" />
     </rule>
-    
 </ruleset>
