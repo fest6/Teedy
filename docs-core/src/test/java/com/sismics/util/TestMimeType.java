@@ -1,6 +1,7 @@
 package com.sismics.util;
 
 import com.sismics.util.mime.MimeType;
+import com.sismics.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
 
