@@ -1,37 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Code Metrics Ruleset"
+<?xml version="1.0"?>
+
+<ruleset name="Custom Rules"
     xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
-    <description>Rules for code metrics: LoC, CC, WMC, CBO, LCOM</description>
-    <rule ref="rulesets/java/codesize.xml/NcssMethodCount">
-        <properties>
-            <property name="maximum" value="50"/>
-        </properties>
-        <description>Methods should not exceed 50 lines of code</description>
-    </rule>
-    <rule ref="rulesets/java/codesize.xml/StdCyclomaticComplexity">
-        <properties>
-            <property name="maximum" value="10"/>
-        </properties>
-        <description>Cyclomatic Complexity should not exceed 10</description>
-    </rule>
-    <rule ref="rulesets/java/design.xml/WeightedMethodCount">
-        <properties>
-            <property name="maximum" value="80"/>
-        </properties>
-        <description>Weighted Methods per Class should not exceed 80</description>
-    </rule>
-    <rule ref="rulesets/java/design.xml/CouplingBetweenObjects">
-        <properties>
-            <property name="maximum" value="5"/>
-        </properties>
-        <description>Coupling Between Objects should not exceed 5</description>
-    </rule>
-    <rule ref="rulesets/java/design.xml/LackOfCohesion">
-        <properties>
-            <property name="minimum" value="1"/>
-        </properties>
-        <description>Lack of Cohesion should be at most 1</description>
-    </rule>
+
+    <description>
+        My custom rules
+    </description>
+
+
+    <rule ref="category/java/design.xml/NcssCount" />
+    <rule ref="category/java/design.xml/CyclomaticComplexity" />
+    <rule ref="category/java/design.xml/GodClass" />
+
 </ruleset>
