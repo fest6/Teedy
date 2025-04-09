@@ -13,5 +13,6 @@
     <rule ref="category/java/design.xml/NcssCount" />
     <rule ref="category/java/design.xml/CyclomaticComplexity" />
     <rule ref="category/java/design.xml/GodClass" />
+    <rule ref="category/java/design.xml/CouplingBetweenObjects" />
 
 </ruleset>
