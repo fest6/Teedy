@@ -4,7 +4,7 @@ import com.sismics.util.mime.MimeType;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MimeTypeTest extends BaseTest {
+public class TestMimeType extends BaseTest {
 
     @Test
     public void testImagePng() {
