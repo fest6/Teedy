@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.io.IOException;
 
 /**
  * Test of the utilities to check MIME types.
