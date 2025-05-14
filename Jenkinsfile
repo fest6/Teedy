@@ -2,7 +2,7 @@
     agent any
     environment {
         DEPLOYMENT_NAME = "your-deployment"
-        CONTAINER_NAME = "your-container"
+        CONTAINER_NAME = "nginx"
         IMAGE_NAME = "abcee/teedy-app:latest"
     }
     stages {
