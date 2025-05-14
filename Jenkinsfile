@@ -1,8 +1,8 @@
  pipeline {
     agent any
     environment {
-        DEPLOYMENT_NAME = "your-deployment"
-        CONTAINER_NAME = "nginx"
+        DEPLOYMENT_NAME = "hello-node"
+        CONTAINER_NAME = "docs"
         IMAGE_NAME = "abcee/teedy-app:latest"
     }
     stages {
